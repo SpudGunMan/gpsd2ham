@@ -3,6 +3,9 @@
 # requires gpsd2grid.py and sudo apt-get install crudini
 # by K7MHI Kelly Keeton 2023
 
+#user variables
+BACKUP=0 #set to 1 to enable config backups ideal for inital confirmations but leave off for daily use
+
 #Set Grid to tempfile for conky
 python3 gpsd2grid.py > /run/user/1000/gridinfo.txt
 
@@ -22,7 +25,6 @@ if [[ $(whereis crudini | grep bin) ]];then
 
     if [ -f ~/.wine/drive_c/RMS\ Express/RMS\ Express.ini ];then
         echo "RMS Express.ini found, updating"
-        #Set RMS Express
 
         #Check for mycall
         if [ -f ~/.grid2app.mycall ];then
@@ -33,12 +35,19 @@ if [[ $(whereis crudini | grep bin) ]];then
             echo $CALL > ~/.grid2app.mycall
         fi
 
+        #Set RMS Express
+        if [ $BACKUP -eq 1 ];then
+            cp ~/.wine/drive_c/RMS\ Express/RMS\ Express.ini ~/.wine/drive_c/RMS\ Express/RMS\ Express.ini.bak
+        fi
         crudini --set ~/.wine/drive_c/RMS\ Express/RMS\ Express.ini $CALL 'Grid Square' $GRID
     fi
 
     if [ -f ~/.config/WSJT-X.ini ];then
         echo "WSJT-X.ini found, updating"
         #Set WSJT
+        if [ $BACKUP -eq 1 ];then
+            cp ~/.config/WSJT-X.ini ~/.config/WSJT-X.ini.bak
+        fi
         crudini --set ~/.config/WSJT-X.ini Configuration MyGrid $GRID
 
         #check for ntp-gps edits
@@ -53,30 +62,45 @@ if [[ $(whereis crudini | grep bin) ]];then
     if [ -f ~/.config/JS8Call.ini ];then
         echo "JS8Call.ini found, updating"
         #Set JS8Call
+        if [ $BACKUP -eq 1 ];then
+            cp ~/.config/JS8Call.ini ~/.config/JS8Call.ini.bak
+        fi
         crudini --set ~/.config/JS8Call.ini Configuration MyGrid $GRID
     fi
 
     if [ -f ~/.config/JTDX.ini ];then
         echo "JTDX.ini found, updating"
         #Set JTDX
+        if [ $BACKUP -eq 1 ];then
+            cp ~/.config/JTDX.ini ~/.config/JTDX.ini.bak
+        fi
         crudini --set ~/.config/JTDX.ini Configuration MyGrid $GRID
     fi
     
     if [ -f ~/VarAC.ini ];then
         echo "VarAC.ini found, updating"
         #Set VarAC
+        if [ $BACKUP -eq 1 ];then
+            cp ~/VarAC.ini ~/VarAC.ini.bak
+        fi
         crudini --set ~/VarAC.ini MY_INFO MyLocator $GRID
     fi
 
     if [ -f ~/.config/ON4QZ/qsstv_9.0.conf ];then
         echo "qsstv_9.0.conf found, updating"
         #Set qsstv
+        if [ $BACKUP -eq 1 ];then
+            cp ~/.config/ON4QZ/qsstv_9.0.conf ~/.config/ON4QZ/qsstv_9.0.conf.bak
+        fi
         crudini --set ~/.config/ON4QZ/qsstv_9.0.conf PERSONAL locator $GRID
     fi
 
     if [ -f ~/varim/varim.ini ];then
         echo "varim.ini found, updating however due to issues with varim.ini, updates port2"
         #Set varim
+        if [ $BACKUP -eq 1 ];then
+            cp ~/varim/varim.ini ~/varim/varim.ini.bak
+        fi
         crudini --set ~/varim/varim.ini port gridsq $GRID
     fi
 
@@ -101,6 +125,9 @@ fi
 if [ -f ~/.config/FreeDATA/config.json ];then
     echo "FreeDATA config.json found, not ready to edit json yet"
     #Set FreeDATA
+    if [ $BACKUP -eq 1 ];then
+        cp ~/.config/FreeDATA/config.json ~/.config/FreeDATA/config.json.bak
+    fi
     #sed -i "s/\"mygrid\": \".*\",/\"mygrid\": \"$GRID\",/g" ~/.config/FreeDATA/config.json
 fi
 

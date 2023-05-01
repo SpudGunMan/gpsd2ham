@@ -3,14 +3,15 @@ This is another program to take gpsd daemon and convert to grid square for ham r
 
 Implementing the GPS and Maidenhead modules in Python3 for lightweight stable, one time setting of location data. 
 
-This is intended more for set-up and tear-down type, Field and Park Activities vs mobile use, as modifying the apps while running is better left to the UDP servers (possible enhancement script)
+This is intended more for set-up and tear-down type, Field and Park Activities vs mobile use. As modifying the apps while running is better left to the UDP servers (possible enhancement script)
 
 ## Requirements
 python3, bash, crudini, gpsd, maidenhead and gps python modules last tested with gps.Version: 3.22
 
-`sudo apt-get install crudini`
-`pip3 install maidenhead`
-
+```
+sudo apt-get install crudini
+pip3 install maidenhead
+```
 assumptions are you have the other bits operating
 
 # Installation
@@ -21,10 +22,11 @@ assumptions are you have the other bits operating
 
 `grid2app.sh`
 
-## Updates the Following apps static files
+## Updates the Following apps "ini" files
 
 Recomened to run the tool before you start your QSO-app
 
+Supported Apps
 - WSJT-X /-Z
 - JS8Call
 - JTDX
@@ -32,8 +34,15 @@ Recomened to run the tool before you start your QSO-app
 - VarAC
 - FLdigi
 - QSSTV 9
+
+Partial Support
 - *VarIM*
 - *Codec2 FreeDATA*
 
-have not tested error conditions or many distros, submit issues! back up if worried.
+### Dev Notes
+
+submit issues! back up if worried.
+
+grid2app.sh line 7
+BACKUP=0 #set to 1 to enable config backups ideal for inital confirmations but leave off for daily use
 
