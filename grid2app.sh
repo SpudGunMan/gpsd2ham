@@ -6,15 +6,16 @@
 #Set Grid to tempfile for conky
 python3 gpsd2grid.py > /run/user/1000/gridinfo.txt
 
-#Check for GPSD Error and exit
-if grep "NOFIX" /run/user/1000/gridinfo.txt;then
-    echo "GPSD Error, NO-GPS-FIX"
-    exit 1
-fi
-
 #Set $GRID for Ham Apps
 GRID=$(cat /run/user/1000/gridinfo.txt)
-echo "Setting Ham Apps to Grid: $GRID"
+
+#Check for GPSD Errors and halt if found
+if grep "NOFIX" /run/user/1000/gridinfo.txt || [ -z "$GRID" ] || [ ! -f /run/user/1000/gridinfo.txt ];then
+    echo "GPSD Error, NO-GPS-FIX"
+    exit 1
+else
+    echo "Setting Ham Apps to Grid: $GRID"
+fi
 
 # Handler for .ini files
 if [[ $(whereis crudini | grep bin) ]];then
