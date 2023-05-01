@@ -4,7 +4,7 @@ This is another program to take gpsd daemon and convert to grid square for ham r
 Implimenting the GPS and Maidenhead modules in Python3 for lightweight stable, one time setting of location data. This is indended more for set-up and tear-down type, Field and Park Activities vs mobile use, as modifying the apps while running is better left to the UDP servers (possible enhancment scrip)
 
 ## Requirements
-python3, bash, crudini, xmlstarlet, gpsd, maidenhead and gps python modules last tested with gps.Version: 3.22
+python3, bash, crudini, gpsd, maidenhead and gps python modules last tested with gps.Version: 3.22
 
 `sudo apt-get install crudini xmlstarlet`
 
