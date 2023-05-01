@@ -1,0 +1,11 @@
+# update the servers with following on /etc/ntp.conf
+
+# GPS Serial data reference
+server 127.127.28.0 minpoll 4 maxpoll 4
+fudge 127.127.28.0 time1 0.0 refid GPS
+
+# GPS PPS reference
+server 127.127.28.1 minpoll 4 maxpoll 4 prefer
+fudge 127.127.28.1 refid PPS
+
+# update /etc/default/gpsd with options -n for performance

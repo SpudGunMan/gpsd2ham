@@ -1,12 +1,13 @@
-#! /usr/bin/env python3
-# GPSD to Ham Radio Grid-Maidenhead Locator v0.1
-# This script is based on the gpsd example code in gpsd project
+#!/usr/bin/env python3
+# GPSD to Ham Radio Grid-Maidenhead Locator v1.0
+# This script will read the gpsd daemon and output the Maidenhead Locator
+# based on the gpsd example code in gpsd project
 # by K7MHI Kelly Keeton 2023
-#
-import gps               #installed with gpsd last tested with Version: 3.22
+
+import gps  #sudo apt install gpsd gpsd-tools python-gps
 import maidenhead as mh  #pip3 install maidenhead
 
-#initialize the connection to gpsd and loop until we get data needed
+#initialize the connection to gpsd and loop until we get data needed ctl-c to exit
 session = gps.gps(mode=gps.WATCH_ENABLE)
 try:
     while 0 == session.read():
@@ -22,10 +23,12 @@ try:
             break
 
         else:
-            print("NO GPS FIX")
-            continue
+            print("NOFIX")
+            break
+
 except KeyboardInterrupt:
-    print('73..')
+    # Ctrl-C pressed
+    print(' NOFIX')
 
 #Cleanup, and leave
 session.close()
