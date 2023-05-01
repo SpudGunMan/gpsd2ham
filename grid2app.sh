@@ -43,7 +43,7 @@ if [[ $(whereis crudini | grep bin) ]];then
 
         #check for ntp-gps edits
         if grep GPS /etc/ntp.conf;then
-            ntpq -p
+            ntpq -p | grep -E 'SHM|offset'
         else
             echo "INFORMATION: NTP is not set to collect from GPS"
         fi
