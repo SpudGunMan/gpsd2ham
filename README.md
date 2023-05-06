@@ -45,3 +45,11 @@ Partial Support
   - grid2app.sh line 7 BACKUP=0 #set to 1 to enable config backups ideal for inital confirmations but leave off for daily use
 - only looking at ntp for GPS at the moment not chrony might enhance that
 
+## Activation Helper
+I also wrote a helper script to launch this and setup my park log archive directory
+```
+wget https://raw.githubusercontent.com/SpudGunMan/SpudGunMan/main/pota-scripts/potactivate.sh
+chmod +x potactivate.sh
+```
+
+
