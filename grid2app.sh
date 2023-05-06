@@ -6,6 +6,19 @@
 #user variables
 BACKUP=0 #set to 1 to enable config backups ideal for inital confirmations but leave off for daily use
 
+#run cgps to monitor accuisition on console? need to ctl-c to exit
+WATCH_CGPS=0
+
+#Watch GPSD with cgps if enabled
+if [ $WATCH_CGPS -eq 1 ];then
+    echo "Running cgps to monitor GPSD, ctl-c to exit"
+    echo
+
+    if [ -f /usr/bin/cgps ];then
+        cgps
+    fi
+fi
+
 #Set Grid to tempfile for conky
 python3 gpsd2grid.py > /run/user/1000/gridinfo.txt
 
