@@ -6,12 +6,12 @@
 #user variables
 BACKUP=0 #set to 1 to enable config backups ideal for inital confirmations but leave off for daily use
 
-#run cgps to monitor accuisition on console? need to ctl-c to exit
+#run cgps to monitor accuisition on console? need to to exit app
 WATCH_CGPS=0
 
 #Watch GPSD with cgps if enabled
 if [ $WATCH_CGPS -eq 1 ];then
-    echo "Running cgps to monitor GPSD, ctl-c to exit"
+    echo "Running cgps to monitor GPSD, 'q' to exit"
     echo
 
     if [ -f /usr/bin/cgps ];then
