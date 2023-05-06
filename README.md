@@ -53,6 +53,6 @@ chmod +x potactivate.sh
 ```
 
 ### grid2pota.sh
-Helper Script for POTA offline CSV-DB Access `grid2pota.sh` is part of this project as well since it depends on and fits well with overall theme. the script can be used with or without this project, but needs to download the database once from pota.app web.
+Helper Script for POTA offline CSV-DB Access `grid2pota.sh` is part of this project as well since it depends on and fits well with overall theme. the script can be used with or without this project, but needs to download the database once from pota.app web. the script is not by default enabled with execute `chmod +x grid2pota.sh`
 
 
