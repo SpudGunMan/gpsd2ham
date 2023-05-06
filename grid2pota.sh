@@ -5,6 +5,19 @@
 # copyright 2023 by K7MHI Kelly Keeton // MIT License
 # version 1.0.0
 
+# Check if the POTA CSV file exists, download if not
+if [ ! -f pota_all_parks.csv ]; then
+    # Get the latest POTA CSV file
+    wget -q https://pota.app/all_parks_ext.csv -O pota_all_parks.csv
+else
+    # Check if the POTA CSV file is older than 100 days
+    if test `find "pota_all_parks.csv" -mtime +100`; then
+        # Get the latest POTA CSV file
+        rm pota_all_parks.csv
+        wget -q https://pota.app/all_parks_ext.csv -O pota_all_parks.csv
+    fi
+fi
+
 # Attempt to get grid from 'conky location' if it exists
 if [ -f /run/user/1000/gridinfo.txt ]; then
     grid=$(cat /run/user/1000/gridinfo.txt)
@@ -12,6 +25,8 @@ fi
 
 # Set Grid with gpsd2grid.py if it exists
 if [ -f gpsd2grid.py ]; then
+    # Run gpsd2grid.py and set output to gps variable
+    echo 
     gps=$(python3 gpsd2grid.py)
 
 
@@ -34,19 +49,6 @@ if [ -z "$grid" ]; then
     else
         echo "Grid is Invalid (example CN88ri) exiting"
         exit 1
-    fi
-fi
-
-# Check if the POTA CSV file exists, download if not
-if [ ! -f pota_all_parks.csv ]; then
-    # Get the latest POTA CSV file
-    wget -q https://pota.app/all_parks_ext.csv -O pota_all_parks.csv
-else
-    # Check if the POTA CSV file is older than 100 days
-    if test `find "pota_all_parks.csv" -mtime +100`; then
-        # Get the latest POTA CSV file
-        rm pota_all_parks.csv
-        wget -q https://pota.app/all_parks_ext.csv -O pota_all_parks.csv
     fi
 fi
 
