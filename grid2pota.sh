@@ -3,7 +3,7 @@
 # POTA - Parks On The Air Park Lookup Tool
 # Uses grid square to return simple list of parks from CSV DB
 # copyright 2023 by K7MHI Kelly Keeton // MIT License
-# version 1.0.0
+# version 1.1.0
 
 # Check if the POTA CSV file exists, download if not
 if [ ! -f pota_all_parks.csv ]; then
@@ -28,8 +28,8 @@ fi
 # Set Grid with gpsd2grid.py if it exists
 if [ -f gpsd2grid.py ]; then
     # Run gpsd2grid.py and set output to gps variable
-    echo "Attempting gpsd2grid.py processing"
-    gps=$(python3 gpsd2grid.py)
+    echo "Attempting gpsd2grid.py acuire, will auto-exit in 10 seconds"
+    gps=$(timeout 10s python3 gpsd2grid.py)
 
 
     # Check if GPSD2GRID returned a valid grid
