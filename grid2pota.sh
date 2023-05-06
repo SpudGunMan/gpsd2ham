@@ -9,12 +9,14 @@
 if [ ! -f pota_all_parks.csv ]; then
     # Get the latest POTA CSV file
     wget -q https://pota.app/all_parks_ext.csv -O pota_all_parks.csv
+    echo "POTA CSV File Downloaded"
 else
     # Check if the POTA CSV file is older than 100 days
     if test `find "pota_all_parks.csv" -mtime +100`; then
         # Get the latest POTA CSV file
         rm pota_all_parks.csv
         wget -q https://pota.app/all_parks_ext.csv -O pota_all_parks.csv
+        echo "POTA CSV File Updated"
     fi
 fi
 
@@ -26,7 +28,7 @@ fi
 # Set Grid with gpsd2grid.py if it exists
 if [ -f gpsd2grid.py ]; then
     # Run gpsd2grid.py and set output to gps variable
-    echo 
+    echo "Attempting gpsd2grid.py processing"
     gps=$(python3 gpsd2grid.py)
 
 
