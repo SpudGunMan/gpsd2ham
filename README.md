@@ -33,6 +33,7 @@ Supported Apps
 - VarAC
 - FLdigi
 - QSSTV 9
+- K Log
 
 Partial Support
 - *VarIM*

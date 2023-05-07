@@ -71,7 +71,16 @@ if [[ $(whereis crudini | grep bin) ]];then
         fi
 
     fi
-    
+
+    if [ -f ~/.klog/klogrc2 ];then
+        echo "K Log found, updating"
+        #Set Klog
+        if [ $BACKUP -eq 1 ];then
+            cp ~/.klog/klogrc2 ~/.klog/klogrc2.bak
+        fi
+        crudini --set ~/.klog/klogrc2 UserData StationLocator $GRID
+    fi
+
     if [ -f ~/.config/JS8Call.ini ];then
         echo "JS8Call.ini found, updating"
         #Set JS8Call
