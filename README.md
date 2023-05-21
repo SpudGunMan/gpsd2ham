@@ -34,6 +34,7 @@ Supported Apps
 - FLdigi
 - QSSTV 9
 - K Log
+- Conky (temp file used same as KM4ACK scripts)
 
 Partial Support
 - *VarIM*
@@ -51,6 +52,12 @@ I also wrote a helper script to launch this and setup my park log archive direct
 ```
 wget https://raw.githubusercontent.com/SpudGunMan/SpudGunMan/main/pota-scripts/potactivate.sh
 chmod +x potactivate.sh
+```
+
+Another one for cleaning up and hacking the MY_SIG for pota on the adif files (handy for the activator)
+```
+wget https://raw.githubusercontent.com/SpudGunMan/SpudGunMan/main/pota-scripts/potadify.sh
+chmod +x potadify.sh
 ```
 
 ### grid2pota.sh
