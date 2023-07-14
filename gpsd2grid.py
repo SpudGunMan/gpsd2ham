@@ -16,7 +16,7 @@ try:
             continue
 
         if ((gps.isfinite(session.fix.latitude) and
-             gps.isfinite(session.fix.longitude))):
+            gps.isfinite(session.fix.longitude))):
             
             #maidenhead locator to 3 digits on stdout and leave loop
             print (mh.to_maiden (session.fix.latitude, session.fix.longitude,3))
