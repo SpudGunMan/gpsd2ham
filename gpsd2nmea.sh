@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 # convert gpsd output to nmea sentences over tcp
 # this script is intended to be used with gpsd and gps-client installed
 # copyright 2024 by K7MHI Kelly Keeton, MIT License
