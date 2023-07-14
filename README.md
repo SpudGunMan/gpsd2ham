@@ -44,6 +44,9 @@ Partial Support
 
 This script will send gpsd data via gpspipe (gpsd-cient) into netcat for use with winlink
 
+Supported Apps
+- Winlink Express
+
 ### Dev Notes
 - Recomened to run the tool before you start your QSO-app
 - submit issues or ideas
