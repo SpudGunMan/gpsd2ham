@@ -40,6 +40,10 @@ Partial Support
 - *VarIM*
 - *Codec2 FreeDATA*
 
+## gpsd2nmea.sh
+
+This script will send gpsd data via gpspipe (gpsd-cient) into netcat for use with winlink
+
 ### Dev Notes
 - Recomened to run the tool before you start your QSO-app
 - submit issues or ideas
