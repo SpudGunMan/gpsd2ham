@@ -2,6 +2,7 @@
 # This script will update the following apps with your current grid square
 # requires gpsd2grid.py and sudo apt-get install crudini
 # by K7MHI Kelly Keeton 2023
+# Version 1.0.5
 
 #user variables
 BACKUP=0 #set to 1 to enable config backups ideal for inital confirmations but leave off for daily use
@@ -144,13 +145,24 @@ if [ -f ~/.conkyrc ];then
     touch ~/.conkyrc
 fi
 
+#handler for json files using jq 
 if [ -f ~/.config/FreeDATA/config.json ];then
-    echo "FreeDATA config.json found, not ready to edit json yet"
+    echo "FreeDATA config.json found, updating"
     #Set FreeDATA
     if [ $BACKUP -eq 1 ];then
         cp ~/.config/FreeDATA/config.json ~/.config/FreeDATA/config.json.bak
     fi
-    #sed -i "s/\"mygrid\": \".*\",/\"mygrid\": \"$GRID\",/g" ~/.config/FreeDATA/config.json
+    jq '.mygrid = "'$GRID'"' ~/.config/FreeDATA/config.json > ~/.config/FreeDATA/config.json.tmp && mv ~/.config/FreeDATA/config.json.tmp ~/.config/FreeDATA/config.json
+fi
+
+if [ -f ~/.config/m0nnb/SparkSDR2/settings/settings.json ];then
+    echo "SparkSDR2 settings.json found, updating"
+    #Set SparkSDR2
+    if [ $BACKUP -eq 1 ];then
+        cp ~/.config/m0nnb/SparkSDR2/settings/settings.json ~/.config/n0nmb/SparkSDR2/settings/settings.json.bak
+    fi
+    jq '.locator = "'$GRID'"' ~/.config/m0nnb/SparkSDR2/settings/settings.json > ~/.config/m0nnb/SparkSDR2/settings/settings.json.tmp
+    mv ~/.config/m0nnb/SparkSDR2/settings/settings.json.tmp ~/.config/m0nnb/SparkSDR2/settings/settings.json
 fi
 
 #Goodbye

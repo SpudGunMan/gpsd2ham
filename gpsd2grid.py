@@ -3,6 +3,7 @@
 # This script will read the gpsd daemon and output the Maidenhead Locator
 # based on the gpsd example code in gpsd project
 # by K7MHI Kelly Keeton 2023
+# Version 1.0.0
 
 import gps  #sudo apt install gpsd gpsd-tools python-gps
 import maidenhead as mh  #pip3 install maidenhead

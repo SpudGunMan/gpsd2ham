@@ -6,11 +6,11 @@ Implementing the GPS and Maidenhead modules in Python3 for lightweight stable, o
 This is intended more for set-up and tear-down type, Field and Park Activities vs mobile use. As modifying the apps while running is better left to the UDP servers (possible enhancement script)
 
 ## Requirements
-python3, bash, ntpq, crudini, gpsd. 
+python3, bash, ntpq, **crudini, jq,** gpsd. 
 Maidenhead and gps python modules last tested with gps.Version: 3.22
 
 ```
-sudo apt-get install crudini
+sudo apt-get install crudini jq
 pip3 install maidenhead
 ```
 assumptions are you have the other bits operating
@@ -34,11 +34,12 @@ Supported Apps
 - FLdigi
 - QSSTV 9
 - K Log
-- Conky (temp file used same as KM4ACK scripts)
+- Codec2 FreeDATA
+- SparkSDR
+- Conky-temp-file used in KM4ACK scripts
 
 Partial Support
-- *VarIM*
-- *Codec2 FreeDATA*
+- *VarIM*, there are multiple modems and only setting for a single modem at the moment.
 
 ## gpsd2nmea.sh
 
