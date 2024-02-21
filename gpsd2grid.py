@@ -5,7 +5,7 @@
 # by K7MHI Kelly Keeton 2023
 # Version 1.0.0
 
-import gps  #sudo apt install gpsd gpsd-tools python-gps
+import gps  #sudo apt install gpsd gpsd-tools python-gps gpsd-clients 
 import maidenhead as mh  #pip3 install maidenhead
 
 #initialize the connection to gpsd and loop until we get data needed ctl-c to exit
