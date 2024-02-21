@@ -36,6 +36,7 @@ Supported Apps
 - K Log
 - Codec2 FreeDATA
 - SparkSDR
+- PAT Winlink Client
 - Conky-temp-file used in KM4ACK scripts
 
 Partial Support

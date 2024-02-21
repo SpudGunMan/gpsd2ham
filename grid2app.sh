@@ -165,6 +165,16 @@ if [ -f ~/.config/m0nnb/SparkSDR2/settings/settings.json ];then
     mv ~/.config/m0nnb/SparkSDR2/settings/settings.json.tmp ~/.config/m0nnb/SparkSDR2/settings/settings.json
 fi
 
+if [ -f ~/.config/pat/config.json ];then
+    echo "pat config.json found, updating"
+    #Set pat
+    if [ $BACKUP -eq 1 ];then
+        cp ~/.config/pat/config.json ~/.config/pat/config.json.bak
+    fi
+    jq '.locator = "'$GRID'"' ~/.config/pat/config.json > ~/.config/pat/config.json.tmp
+    mv ~/.config/pat/config.json.tmp ~/.config/pat/config.json
+fi
+
 #Goodbye
 echo "73.."
 exit 0
