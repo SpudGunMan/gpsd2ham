@@ -61,6 +61,7 @@ OPTIONS="udp://*:9999"
 USBAUTO="false"
 ```
 - Connect your phone via IP, with hotspot for example
+  - you may need to re-start gpsd service after hotspot sarted!
 - in the APK GPSd-Fowarder set the IP of the GPSD service and port 9999, press Start
 
 ### Dev Notes
