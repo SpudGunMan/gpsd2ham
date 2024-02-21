@@ -13,7 +13,7 @@ Maidenhead and gps python modules last tested with gps.Version: 3.22
 sudo apt-get install crudini jq
 pip3 install maidenhead
 ```
-assumptions are you have the other bits operating
+bookworm on raspberry: `pip3 install maidenhead --break-system-packages`
 
 # Installation
 
@@ -65,7 +65,6 @@ USBAUTO="false"
 - in the APK GPSd-Fowarder set the IP of the GPSD service and port 9999, press Start
 
 ### Dev Notes
-- Recomened to run the tool before you start your QSO-app
 - submit issues or ideas
 - back up if worried
   - grid2app.sh line 7 BACKUP=0 #set to 1 to enable config backups ideal for inital confirmations but leave off for daily use
