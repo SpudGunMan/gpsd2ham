@@ -49,6 +49,20 @@ This script will send gpsd data via gpspipe (gpsd-cient) into netcat for use wit
 Supported Apps
 - Winlink Express
 
+## Using Android as GPS over IP / hotspot
+
+On an android device download the APK from https://github.com/tiagoshibata/Android-GPSd-Forwarder project.
+
+Edit the `/etc/sysconfig/gpsd` config file and make sure that the OPTIONS parameter has a UDP source that accepts packets on port 9999.
+```
+# Options for gpsd, including serial devices
+OPTIONS="udp://*:9999"
+# Set to 'true' to add USB devices automatically via udev
+USBAUTO="false"
+```
+- Connect your phone via IP, with hotspot for example
+- in the APK GPSd-Fowarder set the IP of the GPSD service and port 9999, press Start
+
 ### Dev Notes
 - Recomened to run the tool before you start your QSO-app
 - submit issues or ideas
