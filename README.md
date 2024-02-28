@@ -53,7 +53,7 @@ Supported Apps
 
 On an android device download the APK from https://github.com/tiagoshibata/Android-GPSd-Forwarder project.
 
-Edit the `/etc/sysconfig/gpsd` config file and make sure that the OPTIONS parameter has a UDP source that accepts packets on port 9999.
+Edit the `/etc/sysconfig/gpsd` or could be `/etc/default/gpsd` config file and make sure that the OPTIONS parameter has a UDP source that accepts packets on port 9999.
 ```
 # Options for gpsd, including serial devices
 OPTIONS="udp://*:9999"
