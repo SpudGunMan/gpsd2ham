@@ -72,7 +72,6 @@ if [[ $(whereis crudini | grep bin) ]];then
         else
             echo "INFORMATION: NTP GPS config not found see readme for details"
         fi
-
     fi
 
     if [ -f ~/.klog/klogrc2 ];then
@@ -127,6 +126,25 @@ if [[ $(whereis crudini | grep bin) ]];then
             cp ~/varim/varim.ini ~/varim/varim.ini.bak
         fi
         crudini --set ~/varim/varim.ini port gridsq $GRID
+    fi
+
+    #FreeData
+    if [ -f ~/FreeDATA/modem/config.ini ];then
+        echo "FreeDATA/modem/config.ini found, updating"
+        #Set FreeDATA
+        if [ $BACKUP -eq 1 ];then
+            cp ~/FreeDATA/modem/config.ini ~/FreeDATA/modem/config.ini.bak
+        fi
+        crudini --set ~/FreeDATA/modem/config.ini STATION mygrid $GRID
+    fi
+
+    if [ -f ~/.config/FreeDATA/config.ini ];then
+        echo "FreeDATA config.ini found, updating"
+        #Set FreeDATA
+        if [ $BACKUP -eq 1 ];then
+            cp ~/.config/FreeDATA/config.ini ~/.config/FreeDATA/config.ini.bak
+        fi
+        crudini --set ~/.config/FreeDATA/config.ini STATION mygrid $GRID
     fi
 
 else
