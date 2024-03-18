@@ -67,8 +67,10 @@ if [[ $(whereis crudini | grep bin) ]];then
         #check for ntp-gps edits
         if grep GPS /etc/ntp.conf;then
             ntpq -p | grep -E 'SHM|offset'
+            #set time from GPS
+            sudo ntpd -gq
         else
-            echo "INFORMATION: NTP is not set to collect from GPS"
+            echo "INFORMATION: NTP GPS config not found see readme for details"
         fi
 
     fi
