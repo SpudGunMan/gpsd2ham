@@ -3,7 +3,7 @@ This is another program to take gpsd daemon and convert to grid square for ham r
 
 Implementing the GPS and Maidenhead modules in Python3 for lightweight stable, one time setting of location data. 
 
-This is intended more for set-up and tear-down type, Field and Park Activities vs mobile use. As modifying the apps while running is better left to the UDP servers (possible enhancement script)
+This is intended more for set-up and tear-down type, Field and Park Activities vs mobile use. As modifying the apps while running is better left to the UDP servers https://github.com/bmo/py-wsjtx/blob/master/samples/grid_from_gps.py
 
 ## Requirements
 python3, bash, ntpq, **crudini, jq,** gpsd. 
