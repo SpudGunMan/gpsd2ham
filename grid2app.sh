@@ -138,6 +138,15 @@ if [[ $(whereis crudini | grep bin) ]];then
         crudini --set ~/FreeDATA/modem/config.ini STATION mygrid $GRID
     fi
 
+    if [ -f ~/FreeDATA/freedata_server/config.ini ];then
+        echo "FreeDATA/freedata_server/config.ini found, updating"
+        #Set FreeDATA
+        if [ $BACKUP -eq 1 ];then
+            cp ~/FreeDATA/freedata_server/config.ini ~/FreeDATA/modem/config.ini.bak
+        fi
+        crudini --set ~/FreeDATA/freedata_server/config.ini STATION mygrid $GRID
+    fi
+
     if [ -f ~/.config/FreeDATA/config.ini ];then
         echo "FreeDATA config.ini found, updating"
         #Set FreeDATA
