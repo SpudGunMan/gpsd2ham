@@ -64,16 +64,9 @@ if [[ $(whereis crudini | grep bin) ]];then
         fi
         crudini --set ~/.config/WSJT-X.ini Configuration MyGrid $GRID
 
-        #check for ntp-gps edits
-        if grep GPS /etc/ntp.conf;then
-            ntpq -p | grep -E 'SHM|offset'
-            #set time from GPS
-            sudo systemctl stop ntp
-            sudo ntpd -gq
-            sudo systemctl start ntp
-        else
-            echo "INFORMATION: NTP GPS config not found see readme for details"
-        fi
+        #force chrony
+        sudo chronyc makestep
+        sudo chronyc sources -v
     fi
 
     if [ -f ~/.klog/klogrc2 ];then
