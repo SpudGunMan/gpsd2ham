@@ -10,6 +10,31 @@ BACKUP=0 #set to 1 to enable config backups ideal for inital confirmations but l
 #run cgps to monitor accuisition on console? need to to exit app
 WATCH_CGPS=0
 
+# Set to 1 to attempt chrony time step without blocking on sudo prompts.
+# Requires passwordless sudo for chronyc (NOPASSWD) to actually run.
+CHRONY_SYNC=1
+
+run_chrony_sync() {
+    if [ "$CHRONY_SYNC" -ne 1 ]; then
+        return 0
+    fi
+
+    if ! command -v chronyc >/dev/null 2>&1; then
+        echo "chronyc not found, skipping time sync"
+        return 0
+    fi
+
+    # Never block for sudo password input.
+    if ! sudo -n true >/dev/null 2>&1; then
+        echo "Skipping chrony sync: sudo requires password (configure NOPASSWD for chronyc to enable)"
+        return 0
+    fi
+
+    echo "Running chrony sync (non-interactive)"
+    sudo -n chronyc makestep >/dev/null 2>&1 || echo "chronyc makestep failed"
+    sudo -n chronyc sources -v || true
+}
+
 #Watch GPSD with cgps if enabled
 if [ $WATCH_CGPS -eq 1 ];then
     echo "Running cgps to monitor GPSD, 'q' to exit"
@@ -64,9 +89,8 @@ if [[ $(whereis crudini | grep bin) ]];then
         fi
         crudini --set ~/.config/WSJT-X.ini Configuration MyGrid $GRID
 
-        #force chrony
-        sudo chronyc makestep
-        sudo chronyc sources -v
+        # Optional chrony sync that will not block on sudo prompts.
+        run_chrony_sync
     fi
 
     if [ -f ~/.klog/klogrc2 ];then
